@@ -1,0 +1,25 @@
+﻿@model List<Employee>
+
+
+<h1>@ViewData["Title"]</h1>
+<h3>@ViewData["msg"]</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Action</th>
+        </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Department</td>
+            <td><a href="~/employee/details/@item.Id" class="btn btn-outline-info btn-sm">Detail</a></td>
+        </tr>        
+    }
+    </table>

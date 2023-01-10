@@ -1,0 +1,26 @@
+﻿@model EmployeeViewModel
+@{
+    ViewData["Title"] = Model.PageData.PageTitle;
+    //Employee employee = ViewData["empdetail"] as Employee;
+    //Employee employee = ViewBag.EmpDetail;
+    Layout = "_LayoutAmit";
+}
+
+<h1>@Model.PageData.PageTitle</h1>
+
+<div class="card" style="width: 15rem;">
+    <img src="~/assets/no-image.jpg" class="card-img-top" alt="@Model.Employee.Name" />
+    <div class="card-body">
+        <h5 class="card-title">@Model.Employee.Name</h5>
+        <p class="card-text">Hello I am @Model.Employee.Name and working in @Model.Employee.Department. department.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Email Me: @Model.Employee.Email</li>
+        <li class="list-group-item">Employee Id: @Model.Employee.Id</li>
+       
+    </ul>
+    <div class="card-body">
+        <a href="~/employee" class="card-link">All Employees</a>
+        <a href="mailto:@Model.Employee.Email" class="card-link">Write an Email</a>
+    </div>
+</div>
