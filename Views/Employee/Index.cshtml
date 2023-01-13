@@ -19,7 +19,13 @@
                 <td>@item.Name</td>
                 <td>@item.Email</td>
                 <td>@item.Department</td>
-            <td><a href="~/employee/details/@item.Id" class="btn btn-outline-info btn-sm">Detail</a></td>
+            <td>
+                <a href="~/employee/details/@item.Id" class="btn btn-outline-info">Detail</a>
+                <button onclick="fun()" class="btn btn-success">Click Me</button>
+            </td>
         </tr>        
     }
     </table>
+    @section Scripts{
+    <script src="~/js/site.js"></script>
+    }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AmitWebAppMVC.Controllers
 {
+    [Route("[controller]/[action]/{id?}")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository repository;
@@ -13,6 +14,9 @@ namespace AmitWebAppMVC.Controllers
             this.repository = repository; // DI
             
         }
+        [Route("/")]
+        [Route("/[controller]")]
+        [Route("/[controller]/[action]")]
         public IActionResult Index()
         {
             List<Employee> model= repository.GetAllEmployees();
@@ -20,6 +24,8 @@ namespace AmitWebAppMVC.Controllers
             ViewData["msg"] = "Welcome to View Data";
             return View(model);
         }
+
+       
         public IActionResult Details(int id=1001)
         {
             EmployeeViewModel model = new EmployeeViewModel()
@@ -30,6 +36,8 @@ namespace AmitWebAppMVC.Controllers
             //ViewBag.EmpDetail = repository.GetEmployee(id);
             return View(model);
         }
+       
+        [Route("amit")]
         public JsonResult Data(int id=1001)
         {
             return Json(repository.GetEmployee(id));
