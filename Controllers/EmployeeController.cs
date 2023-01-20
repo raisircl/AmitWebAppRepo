@@ -24,8 +24,21 @@ namespace AmitWebAppMVC.Controllers
             ViewData["msg"] = "Welcome to View Data";
             return View(model);
         }
-
-       
+        public IActionResult Create()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Create(Employee emp)
+        {
+            if(ModelState.IsValid)
+            {
+               Employee x= repository.Add(emp);
+                return RedirectToAction("Details", new { id = x.Id }); 
+            }
+            return View();
+        }
         public IActionResult Details(int id=1001)
         {
             EmployeeViewModel model = new EmployeeViewModel()

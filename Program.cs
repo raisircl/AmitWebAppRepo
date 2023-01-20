@@ -1,13 +1,25 @@
 using AmitWebAppMVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
+
+
+var connstr = builder.Configuration.GetConnectionString("conn");
+builder.Services.AddDbContext<AppDBContext>(options =>
+
+    options.UseSqlServer(connstr),ServiceLifetime.Singleton
+);
+
+builder.Services.AddSingleton<IEmployeeRepository,EmployeeMysqlRepo>();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -54,6 +66,8 @@ app.UseRouting();
 //        await context.Response.WriteAsync($"Process Name {System.Diagnostics.Process.GetCurrentProcess().ProcessName} and mykey {data}");
 //    });
 //});
+
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
